@@ -17,20 +17,27 @@ function getWorkingHours (empCheck) {   // checking employee present part time o
     }
 }   
 
+function calcDailyWage (empHrs) {     // calculating daily employee wage
+    return empHrs * WAGE_PER_HOUR;
+}   
+
 const MAX_HRS_IN_MONTH = 160;
 const NUM_OF_WORKING_DAYS = 20;
 let totalEmpHrs = 0;
 let totalWorkingDays = 0;
+let empDailyWageArr = new Array(); 
 while (totalEmpHrs <= MAX_HRS_IN_MONTH &&          // loop will run till max hours 160 or working days 20 is reached
        totalWorkingDays < NUM_OF_WORKING_DAYS) {
     totalWorkingDays++;
     let empCheck = Math.floor(Math.random() * 10) % 3;
     let empHrs = getWorkingHours (empCheck);
     totalEmpHrs += empHrs; 
+    empDailyWageArr.push(calcDailyWage (empHrs));  //Storing Daily Wage in a Array
 }
 let empWage = totalEmpHrs * WAGE_PER_HOUR;
 console.log("Total Days: " + totalWorkingDays +
             " Total Hrs: " + totalEmpHrs + " Emp Wage: "+ empWage);
+console.log(empDailyWageArr);
 
 
 
